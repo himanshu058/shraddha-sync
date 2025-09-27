@@ -1,42 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Temple & Pilgrimage Design System - Spiritual & Modern */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Temple Color Palette */
+    --background: 45 100% 98%;
+    --foreground: 0 0% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 12%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Saffron Primary */
+    --primary: 30 100% 60%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 30 100% 70%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Golden Secondary */
+    --secondary: 51 100% 50%;
+    --secondary-foreground: 0 0% 12%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Maroon Accent */
+    --accent: 0 100% 25%;
+    --accent-foreground: 0 0% 98%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Soft tones */
+    --muted: 45 60% 95%;
+    --muted-foreground: 0 0% 45%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 30 30% 88%;
+    --input: 30 30% 94%;
+    --ring: 30 100% 60%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Temple Gradients */
+    --gradient-temple: linear-gradient(135deg, hsl(30 100% 60%), hsl(51 100% 50%));
+    --gradient-sacred: linear-gradient(180deg, hsl(45 100% 98%), hsl(30 40% 96%));
+    --gradient-devotion: linear-gradient(45deg, hsl(0 100% 25%), hsl(30 100% 60%));
+
+    /* Sacred Shadows */
+    --shadow-temple: 0 10px 40px -10px hsl(30 100% 60% / 0.3);
+    --shadow-sacred: 0 4px 20px -4px hsl(30 100% 60% / 0.15);
+    --shadow-glow: 0 0 30px hsl(30 100% 70% / 0.4);
+
+    /* Divine Animation */
+    --transition-sacred: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-gentle: all 0.3s ease-out;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +121,106 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  /* Temple Backgrounds */
+  .bg-temple-gradient {
+    background: var(--gradient-temple);
+  }
+  
+  .bg-sacred-gradient {
+    background: var(--gradient-sacred);
+  }
+  
+  .bg-devotion-gradient {
+    background: var(--gradient-devotion);
+  }
+  
+  /* Sacred Shadows */
+  .shadow-temple {
+    box-shadow: var(--shadow-temple);
+  }
+  
+  .shadow-sacred {
+    box-shadow: var(--shadow-sacred);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* Sacred Animations */
+  .transition-sacred {
+    transition: var(--transition-sacred);
+  }
+  
+  .transition-gentle {
+    transition: var(--transition-gentle);
+  }
+  
+  /* Temple Cards */
+  .temple-card {
+    @apply bg-card border border-border rounded-lg shadow-sacred transition-sacred hover:shadow-temple;
+  }
+  
+  /* Devotional Text */
+  .text-devotion {
+    background: var(--gradient-devotion);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  /* Sacred Scroll Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px hsl(30 100% 70% / 0.3);
+  }
+  to {
+    box-shadow: 0 0 40px hsl(30 100% 70% / 0.6);
   }
 }
